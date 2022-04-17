@@ -151,7 +151,7 @@ function enableCam(event) {
   });
 }
 
-
+var objetos = [];
 // Prediction loop!
 function predictWebcam() {
   // Now let's start classifying the stream.
@@ -166,7 +166,8 @@ function predictWebcam() {
     // they have a high confidence score.
     for (let n = 0; n < predictions.length; n++) {
       // If we are over 66% sure we are sure we classified it right, draw it!
-      if (predictions[n].score > 0.66) {
+      if (predictions[n].score > 0.8) {
+        
         const p = document.createElement('p');
         p.innerText = predictions[n].class  + ' - with ' 
             + Math.round(parseFloat(predictions[n].score) * 100) 
@@ -186,10 +187,20 @@ function predictWebcam() {
 
         liveView.appendChild(highlighter);
         liveView.appendChild(p);
+        // if (predictions[n].class != "person") {
+        //     if (objetos.includes(predictions[n].class)) {
+        //         continue;
+        //     } else{
+        //         objetos.push(predictions[n].class);
+        //         console.log("guardando "+objetos);    
+        //     }
+            
+        // }
         
         // Store drawn objects in memory so we can delete them next time around.
         children.push(highlighter);
         children.push(p);
+    
       }
     }
     
