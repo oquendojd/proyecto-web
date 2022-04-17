@@ -50,7 +50,20 @@
           title="Click to get classification!"
         />
       </div> -->
-
+        <div>
+            <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+            <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;">
+            <img id="output" width="200" />	
+            <button id="imgClas">Classify</button>
+        </div>
+        <div>
+            <h3>
+              Objeto detectado:
+            </h3>
+            <p id="obj"> </p>
+        </div>
+    
+        
       <h2>Demo: Webcam continuous classification</h2>
       <!-- <p>
         Hold some objects up close to your webcam to get a real-time
@@ -67,6 +80,7 @@
         <button id="webcamButton">Enable Webcam</button>
         <video id="webcam" autoplay></video>
       </div>
+      
     </section>
 
     <footer class="note" >
