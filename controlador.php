@@ -39,7 +39,7 @@ class DB extends mysqli{
 		return $this->query($consulta);
 	}
 
-	function createCard($cardName,$desc,$precio,$imagen){
+	function createCard($cardName,$imagen){
 		$consulta = "INSERT INTO elementos (nombre,imagen) VALUE("
 			."'".$cardName."','".$imagen."')";
 		print($consulta."<br>");

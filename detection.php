@@ -1,10 +1,16 @@
+<?php
+	session_start();
+	if(!isset($_SESSION['auth'])){
+		header("Location: index.php?error=2");
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <title>
-      Multiple object detection using pre trained model in TensorFlow.js
+      Nuevo Objeto
     </title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -15,7 +21,7 @@
     <link rel="stylesheet" href="estilo/style.css" />
   </head>
   <body>
-    <h1>Multiple object detection using pre trained model in TensorFlow.js</h1>
+    <h1>Añadir y reconocer objeto</h1>
 
     <header class="note">
       <h2>Difficulty: Easy</h2>
@@ -51,16 +57,27 @@
         />
       </div> -->
         <div>
-            <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
-            <input type="file"  accept="image/*" name="image" id="file"  onchange="loadFile(event)" style="display: none;">
-            <img id="output" width="200" />	
-            <button id="imgClas">Classify</button>
+        <?php
+        if(isset($_GET['error'])){
+          if($_GET['error']==1){
+            print("<p class='error'>No se logró guardar la nueva tarjeta. Verifique la información</p>");
+          }
+        }
+        ?>
+            <form action="crud/create.php" enctype="multipart/form-data" method="POST">
+                <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+                <input type="file"  accept="image/*" name="imagen" id="file"  onchange="loadFile(event)" style="display: none;">
+                <img id="output" width="200" />	
+                    <h3>
+                        Objeto detectado:
+                    </h3>
+                  <p id="obj" name="nombre"> </p>
+			          <input id="imgClas" type="submit" value="Clasificar">
+            </form>
         </div>
         <div>
-            <h3>
-              Objeto detectado:
-            </h3>
-            <p id="obj"> </p>
+            
+            
         </div>
     
         

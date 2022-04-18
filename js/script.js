@@ -102,7 +102,7 @@ function handleClick(event) {
     
         objetos.push(predictions[n].class);
         console.log("guardando "+objetos);    
-        document.getElementById('obj').innerText = objetos;
+        document.getElementById('obj').innerHTML = objetos;
     //   event.target.parentNode.appendChild(highlighter);
     //   event.target.parentNode.appendChild(p);
     }

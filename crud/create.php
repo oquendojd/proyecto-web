@@ -7,14 +7,14 @@
 	}
 
 	$origen  = $_FILES['imagen']['tmp_name'];
-	$destino = "cards/".$_FILES['imagen']['name'];
+	$destino = "img/".$_FILES['imagen']['name'];
 	move_uploaded_file($origen, "../".$destino);
 
 	$db = db::getDBConnection();
-	$Respuesta = $db->createCard($_POST['nombre'],$_POST['descripcion'],$_POST['precio'],$destino);
+	$Respuesta = $db->createCard($_GET['nombre'],$destino);
 	if(!$Respuesta){
-		header("Location: ../create.php?error=1");
+		header("Location: ../detection.php?error=1");
 	}else {
-		header("Location: ../inicio.php");
+		header("Location: ../objUser.php");
 	}
 ?>

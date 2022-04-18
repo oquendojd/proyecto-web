@@ -24,6 +24,9 @@
     <div class="container">
         <div class="text-center">
           <h1>Bienvenido <?php print($_SESSION['user']);?></h1>
+          <form action="action.php" method="get"> 
+              <input type="submit" name="nuevo" value="Nuevo Objeto">
+          </form>
         </div>
         <div class="container">
           <div class="card-columns">

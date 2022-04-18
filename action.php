@@ -8,7 +8,7 @@
 	//1. Create
 	if (isset($_GET['nuevo'])) {
 	    print("nuevo action: ".$_GET['card']);
-		header("Location: create.php");
+		header("Location: detection.php");
 	}
 
 	//2. Read
