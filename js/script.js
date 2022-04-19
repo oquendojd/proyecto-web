@@ -54,6 +54,7 @@ var loadFile = function(event) {
 
 	var image = document.getElementById('output');
 	image.src = URL.createObjectURL(event.target.files[0]);
+  
 };
 
 
@@ -71,7 +72,7 @@ function handleClick(event) {
   }
   var imagen = document.getElementById('output');
 
-    console.log(imagen);
+  console.log(imagen);
   // We can call model.classify as many times as we like with
   // different image data each time. This returns a promise
   // which we wait to complete and then call a function to
@@ -81,31 +82,36 @@ function handleClick(event) {
     // add it to the DOM.
     console.log(predictions);
     for (let n = 0; n < predictions.length; n++) {
+      if (predictions[n].score > 0.8) {
       // Description text
-    //   const p = document.createElement('p');
-    //   p.innerText = predictions[n].class  + ' - with ' 
-    //       + Math.round(parseFloat(predictions[n].score) * 100) 
-    //       + '% confidence.';
-    //   // Positioned at the top left of the bounding box.
-    //   // Height is whatever the text takes up.
-    //   // Width subtracts text padding in CSS so fits perfectly.
-    //   p.style = 'left: ' + predictions[n].bbox[0] + 'px;' + 
-    //       'top: ' + predictions[n].bbox[1] + 'px; ' + 
-    //       'width: ' + (predictions[n].bbox[2] - 10) + 'px;';
+      const p = document.createElement('p');
+      p.innerText = predictions[n].class  + ' - with ' 
+          + Math.round(parseFloat(predictions[n].score) * 100) 
+          + '% confidence.';
+      // Positioned at the top left of the bounding box.
+      // Height is whatever the text takes up.
+      // Width subtracts text padding in CSS so fits perfectly.
+      p.style = 'left: ' + predictions[n].bbox[0] + 'px;' + 
+          'top: ' + predictions[n].bbox[1] + 'px; ' + 
+          'width: ' + (predictions[n].bbox[2] - 10) + 'px;';
 
-    //   const highlighter = document.createElement('div');
-    //   highlighter.setAttribute('class', 'highlighter');
-    //   highlighter.style = 'left: ' + predictions[n].bbox[0] + 'px;' +
-    //       'top: ' + predictions[n].bbox[1] + 'px;' +
-    //       'width: ' + predictions[n].bbox[2] + 'px;' +
-    //       'height: ' + predictions[n].bbox[3] + 'px;';
+      const highlighter = document.createElement('div');
+      highlighter.setAttribute('class', 'highlighter');
+      highlighter.style = 'left: ' + predictions[n].bbox[0] + 'px;' +
+          'top: ' + predictions[n].bbox[1] + 'px;' +
+          'width: ' + predictions[n].bbox[2] + 'px;' +
+          'height: ' + predictions[n].bbox[3] + 'px;';
     
-        objetos.push(predictions[n].class);
+        objetos=predictions[n].class;
+        document.getElementById("obj").innerHTML=objetos;
+        document.getElementById("inObj").value=objetos;
+
         console.log("guardando "+objetos);    
-        document.getElementById('obj').innerHTML = objetos;
-    //   event.target.parentNode.appendChild(highlighter);
-    //   event.target.parentNode.appendChild(p);
+        // document.getElementById('obj').innerHTML = objetos;
+      event.target.parentNode.appendChild(highlighter);
+      event.target.parentNode.appendChild(p);
     }
+  }
   });
 }
 

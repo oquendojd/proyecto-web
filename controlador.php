@@ -29,26 +29,26 @@ class DB extends mysqli{
 	
 	function getCards(){
 		$consulta = "SELECT * FROM elementos LIMIT 10";
-		print($consulta."<br>");
+		// print($consulta."<br>");
 		return $this->query($consulta);
 	}
 
 	function getCard($cardName){
 		$consulta = "SELECT * FROM elementos WHERE nombre='".$cardName."'";
-		print($consulta."<br>");
+		// print($consulta."<br>");
 		return $this->query($consulta);
 	}
 
-	function createCard($cardName,$imagen){
-		$consulta = "INSERT INTO elementos (nombre,imagen) VALUE("
-			."'".$cardName."','".$imagen."')";
-		print($consulta."<br>");
+	function createCard($cardName,$descripcion,$imagen){
+		$consulta = "INSERT INTO elementos (nombre,descripcion,imagen) VALUE("
+			."'".$cardName."','".$descripcion."','".$imagen."')";
+		// print($consulta."<br>");
 		return $this->query($consulta);
 	}
 
 	function deleteCard($cardName){
 		$consulta = "DELETE FROM elementos WHERE nombre='".$cardName."'";
-		print($consulta."<br>");
+		// print($consulta."<br>");
 		return $this->query($consulta);
 	}
 
@@ -64,13 +64,13 @@ class DB extends mysqli{
 	
 			."WHERE nombre='".$cardName."'";
 		}
-		print($consulta."<br>");
+		// print($consulta."<br>");
 		return $this->query($consulta);
 	}
 
 	function getUser($name,$pass){
 		$consulta = "SELECT * FROM usuarios WHERE nombre='".$name."' AND password='".$pass."'";
-		print($consulta."<br>");
+		// print($consulta."<br>");
 		return $this->query($consulta);
 	}
 }

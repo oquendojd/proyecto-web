@@ -24,8 +24,9 @@
     <div class="container">
         <div class="text-center">
           <h1>Bienvenido <?php print($_SESSION['user']);?></h1>
+          <a href="logout.php">Cerrar sesion</a>
           <form action="action.php" method="get"> 
-              <input type="submit" name="nuevo" value="Nuevo Objeto">
+              <input type="submit" class="btn btn-primary btn-lg" name="nuevo" value="Nuevo Objeto">
           </form>
         </div>
         <div class="container">
@@ -36,16 +37,14 @@
               while ($elemento = $Respuesta->fetch_assoc()) {
                 
                 print('<div class="card">');
-                print('<a href="#">');
+                // print('<a href="#">');
                 print('<img class="card-img-top" src="'.$elemento['imagen'].'" alt="Card image cap">');
                 print('<div class="card-body">');
-                print('<h5 class="card-title">'.$elemento['nombre'].'</h5>');
-                print('<p class="card-text">');
-                print("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium ad alias, aliquid amet aspernatur atque culpa cum debitis dicta doloremque, dolorum ea eos et excepturi explicabo facilis harum illo impedit incidunt laborum laudantium...");
-                print("    </p>");
-                print('    <p class="card-text"><small class="text-muted"><i class="fas fa-eye"></i>1000<i class="far fa-user"></i>admin<i class="fas fa-calendar-alt"></i>Jan 20, 2018</small></p>');
+                print('<h5 class="card-title">Tipo: '.$elemento['nombre'].'</h5>');
+                print('<p class="card-text">Descripción: '.$elemento['descripcion'].'</p>');
+                // print('    <p class="card-text"><small class="text-muted"><i class="fas fa-eye"></i>1000<i class="far fa-user"></i>admin<i class="fas fa-calendar-alt"></i>Jan 20, 2018</small></p>');
                 print("    </div>");
-                print('  </a>');
+                // print('  </a>');
                 print("</div>");
             }
             ?>

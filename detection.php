@@ -22,17 +22,11 @@
   </head>
   <body>
     <h1>Añadir y reconocer objeto</h1>
-
-    <header class="note">
-      <h2>Difficulty: Easy</h2>
-    </header>
-
-    <h2>How to use</h2>
-    <p>
-      Please wait for the model to load before trying the demos below at which
-      point they will become visible when ready to use.
-    </p>
-
+    
+    <h4>
+      Por favor espera a que el modelo de clasificación cargue.
+    </h4>
+    <div class="container-fluid">
     <section id="demos" class="invisible">
       <!-- <h2>Demo: Classifying Images</h2>
       <p>
@@ -56,7 +50,7 @@
           title="Click to get classification!"
         />
       </div> -->
-        <div>
+      <div class="classifyOnClick">
         <?php
         if(isset($_GET['error'])){
           if($_GET['error']==1){
@@ -64,24 +58,27 @@
           }
         }
         ?>
-            <form action="crud/create.php" enctype="multipart/form-data" method="POST">
-                <p><label for="file" style="cursor: pointer;">Upload Image</label></p>
+            <form action="crud/create.php" id="form-Obj" enctype="multipart/form-data" method="POST">
+                <img id="output" class="img-fluid"/>
+                <label class="btn btn-primary btn-lg" for="file" style="cursor: pointer;">Cargar Imagen</label>
                 <input type="file"  accept="image/*" name="imagen" id="file"  onchange="loadFile(event)" style="display: none;">
-                <img id="output" width="200" />	
-                    <h3>
-                        Objeto detectado:
-                    </h3>
-                  <p id="obj" name="nombre"> </p>
-			          <input id="imgClas" type="submit" value="Clasificar">
+			          <input type="text" id="inObj" name="nombre" style="display: none;" required >
+			          <div class="input-group input-group-sm mb-3">
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Descripcion</span>
+                    <input type="text" name="descripcion" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                </div>
+                <h3>Objeto detectado:</h3>
+                <h4 id="obj" > </h4>
+                <button id="imgClas" type="button" class="btn btn-primary btn-lg">Clasificar</button> 
+                <input type="submit" value="Guardar" class="btn btn-primary btn-lg"><br>
+                <div class="container">
+                
+                </div>
             </form>
-        </div>
-        <div>
-            
-            
-        </div>
-    
-        
-      <h2>Demo: Webcam continuous classification</h2>
+      </div>
+
+
+      <!-- <h2>Demo: Webcam continuous classification</h2> -->
       <!-- <p>
         Hold some objects up close to your webcam to get a real-time
         classification! You must be on
@@ -93,15 +90,15 @@
         window)
       </p> -->
 
-      <div id="liveView" class="videoView">
+      <div id="liveView" class="videoView" style="display: none">
         <button id="webcamButton">Enable Webcam</button>
         <video id="webcam" autoplay></video>
       </div>
-      
-    </section>
 
+    </section>
+    </div>
     <footer class="note" >
-      <p>
+      <!-- <p>
         <em>Please note:</em> This demo loads our desired machine learning model
         via
         <a
@@ -119,7 +116,7 @@
         <a href="https://glitch.com/~tensorflow-js-object-detection"
           >See the README.md or the project page for more information</a
         >.
-      </p>
+      </p> -->
     </footer>
 
     <!-- Import TensorFlow.js library -->

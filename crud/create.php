@@ -11,7 +11,7 @@
 	move_uploaded_file($origen, "../".$destino);
 
 	$db = db::getDBConnection();
-	$Respuesta = $db->createCard($_GET['nombre'],$destino);
+	$Respuesta = $db->createCard($_POST['nombre'],$_POST['descripcion'],$destino);
 	if(!$Respuesta){
 		header("Location: ../detection.php?error=1");
 	}else {
